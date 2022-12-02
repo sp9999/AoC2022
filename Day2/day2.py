@@ -30,62 +30,43 @@ except:
 
 sp1 = sp2 = p1 = p2 = 0
 
+p1ResultMap = {
+    "A": {"X": 3, "Y": 6, "Z": 0},
+    "B": {"X": 0, "Y": 3, "Z": 6},
+    "C": {"X": 6, "Y": 0, "Z": 3}
+}
 
-def RPS(elf, input, part2):
-    ROCK = "A"
-    PAPER = "B"
-    # SCISSORS = "C"
-    ROCKORLOSE = "X"
-    PAPERORDRAW = "Y"
-    # SCISSORSORWIN = "Z"
+p1ShapeMap = {
+    "A": {"X": 1, "Y": 2, "Z": 3},
+    "B": {"X": 1, "Y": 2, "Z": 3},
+    "C": {"X": 1, "Y": 2, "Z": 3}
+}
 
-    SHAPEVALUE = [0, 1, 2, 3]
-    RESULTVALUE = [0, 3, 6]
-    RESULT_LOSE = 0
-    RESULT_DRAW = 1
-    RESULT_WIN = 2
+p2ResultMap = {
+    "A": {"X": 0, "Y": 3, "Z": 6},
+    "B": {"X": 0, "Y": 3, "Z": 6},
+    "C": {"X": 0, "Y": 3, "Z": 6}
+}
 
-    if elf == ROCK:
-        if input == ROCKORLOSE:
-            if part2:
-                return RESULTVALUE[RESULT_LOSE] + SHAPEVALUE[3]
-            return RESULTVALUE[RESULT_DRAW] + SHAPEVALUE[1]
-        elif input == PAPERORDRAW:
-            if part2:
-                return RESULTVALUE[RESULT_DRAW] + SHAPEVALUE[1]
-            return RESULTVALUE[RESULT_WIN] + SHAPEVALUE[2]
-        else: # input == SCISSORSORWIN
-            if part2:
-                return RESULTVALUE[RESULT_WIN] + SHAPEVALUE[2]
-            return RESULTVALUE[RESULT_LOSE] + SHAPEVALUE[3]
-    elif elf == PAPER:
-        if input == ROCKORLOSE:
-            return RESULTVALUE[RESULT_LOSE] + SHAPEVALUE[1]
-        elif input == PAPERORDRAW:
-            return RESULTVALUE[RESULT_DRAW] + SHAPEVALUE[2]
-        else: # input == SCISSORSORWIN
-            return RESULTVALUE[RESULT_WIN] + SHAPEVALUE[3]
-    else: # SCISSORS
-        if input == ROCKORLOSE:
-            if part2:
-                return RESULTVALUE[RESULT_LOSE] + SHAPEVALUE[2]
-            return RESULTVALUE[RESULT_WIN] + SHAPEVALUE[1]
-        elif input == PAPERORDRAW:
-            if part2:
-                return RESULTVALUE[RESULT_DRAW] + SHAPEVALUE[3]
-            return RESULTVALUE[RESULT_LOSE] + SHAPEVALUE[2]
-        else: # input == SCISSORSORWIN
-            if part2:
-                return RESULTVALUE[RESULT_WIN] + SHAPEVALUE[1]
-            return RESULTVALUE[RESULT_DRAW] + SHAPEVALUE[3]
+p2ShapeMap = {
+    "A": {"X": 3, "Y": 1, "Z": 2},
+    "B": {"X": 1, "Y": 2, "Z": 3},
+    "C": {"X": 2, "Y": 3, "Z": 1}
+}
+
+
+def RPS(elf, input, resultMap, shapeMap):
+    return resultMap[elf][input] + shapeMap[elf][input]
 
 
 def puzzle(input, part2=False):
     result = 0
-
     for line in input:
         elf, second = line.split(" ")
-        roundResult = RPS(elf, second, part2)
+        if part2:
+            roundResult = RPS(elf, second, p2ResultMap, p2ShapeMap)
+        else:
+            roundResult = RPS(elf, second, p1ResultMap, p1ShapeMap)
         result += roundResult
     return result
 
