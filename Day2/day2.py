@@ -16,7 +16,7 @@ lines = utility.inputDataToLines(data)
 
 ## SAMPLE INPUT STUFF
 sample = []
-with open(".\input.txt", encoding="utf8") as fp:
+with open("./input.txt", encoding="utf8") as fp:
     for line in fp:
         sample.append(line.strip())
 
