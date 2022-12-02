@@ -33,8 +33,8 @@ sp1 = sp2 = p1 = p2 = 0
 
 def puzzle(input):
     result = 0
+    # PUT CODE HERE
     return result
-
 
 sp1 = puzzle(sample)
 p1 = puzzle(lines)
@@ -47,4 +47,5 @@ print("P1: " + str(p1))
 print("P2: " + str(p2))
 
 if p1 != 0 and submit(p1, part="a", day=DAY, year=YEAR) is None:
-    submit(p2, part="b", day=DAY, year=YEAR)
+    if p2 != 0:
+        submit(p2, part="b", day=DAY, year=YEAR)
