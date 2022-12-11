@@ -32,22 +32,29 @@ sp1 = sp2 = p1 = p2 = 0
 
 
 def puzzle(input, part2=False):
-    result = 0
-    if not part2:
-        result += 0
-    else:
-        result += 0
-    return result
+    distinct = 4
+    if part2:
+        distinct = 14
+    list = []
+    line = input[0]
+    for i in range(0, len(line)):
+        if i > distinct - 1:
+            list.pop(0)
+        list.append(line[i])
+        if len(set(list)) == distinct:
+            return i + 1
+
+    return 0
 
 sp1 = puzzle(sample)
 p1 = puzzle(lines)
-# sp2 = puzzle(sample, True)
-# p2 = puzzle(lines, True)
+sp2 = puzzle(sample, True)
+p2 = puzzle(lines, True)
 
-print("SP1: " + str(sp1))
-print("SP2: " + str(sp2))
-print("P1: " + str(p1))
-print("P2: " + str(p2))
+print("SP1: " + str(sp1)) # 7
+print("SP2: " + str(sp2)) # 19
+print("P1: " + str(p1))   # 1855
+print("P2: " + str(p2))   # 3256
 
 if p1 != 0 and submit(p1, part="a", day=DAY, year=YEAR) is None:
     if p2 != 0:
