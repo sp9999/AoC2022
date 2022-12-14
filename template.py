@@ -44,10 +44,10 @@ p1 = puzzle(lines)
 # sp2 = puzzle(sample, True)
 # p2 = puzzle(lines, True)
 
-print("SP1: " + str(sp1))
-print("SP2: " + str(sp2))
-print("P1: " + str(p1))
-print("P2: " + str(p2))
+print("SP1: " + str(sp1))   #
+print("SP2: " + str(sp2))   #
+print("P1: " + str(p1))     #
+print("P2: " + str(p2))     #
 
 if p1 != 0 and submit(p1, part="a", day=DAY, year=YEAR) is None:
     if p2 != 0:
